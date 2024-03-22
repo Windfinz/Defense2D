@@ -17,6 +17,7 @@ public class Arrow : MonoBehaviour
     private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        LookAtPlayer();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -25,6 +26,13 @@ public class Arrow : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void LookAtPlayer()
+    {
+        Vector3 dir = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90);
     }
 
 }
