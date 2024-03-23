@@ -8,9 +8,14 @@ public class Arrow : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float damage;
+
+    private PlayerHealth health;
 
     private void Start()
     {
+        health = FindObjectOfType<PlayerHealth>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -24,6 +29,11 @@ public class Arrow : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Shield")) 
         {
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            health.TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }
