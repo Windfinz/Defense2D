@@ -38,6 +38,12 @@ public class Arrow : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        ArrowSpawner spawner = FindObjectOfType<ArrowSpawner>();
+        spawner.OnEnemyKilled();
+    }
+
     private void LookAtPlayer()
     {
         Vector3 dir = player.transform.position - transform.position;
