@@ -1359,11 +1359,11 @@ MonoBehaviour:
     enemyGroups:
     - enemyName: arrow
       enemyCount: 20
-      spawnCount: 1
+      spawnCount: 0
       enemyPrefab: {fileID: 4086938847594003795, guid: 003fa558a637df64e903416fcc654c6e, type: 3}
     - enemyName: fire arrow
       enemyCount: 5
-      spawnCount: 1
+      spawnCount: 0
       enemyPrefab: {fileID: 945301472896791103, guid: e01c507a4c65b4945bf21978cd9c345b, type: 3}
     waveQuota: 0
     spawnInterval: 2
