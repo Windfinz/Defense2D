@@ -1,11 +1,12 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
-    private float playerHealth;
+    private float playerMaxHealth;
 
     [Header("Health")]
     public Image healthBar;
@@ -17,12 +18,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHealth = playerHealth;
-        maxHealth = playerHealth;
+        currentHealth = playerMaxHealth;
+        maxHealth = playerMaxHealth;
         UpdateHealthBar();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateHealthBar();
     }
@@ -41,6 +42,31 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             //Kill method;
+        }
+    }
+
+    public void FireDamage(float dmg, float firedmg, int time)
+    {
+        currentHealth -= dmg;
+        StartCoroutine(DealFireDamageOverTime(firedmg, time));
+        if (currentHealth <= 0)
+        {
+            //Kill method;
+        }
+    }
+
+    private IEnumerator DealFireDamageOverTime(float firedmg, int time)
+    {
+        while(time > 0)
+        {
+            time--;
+            currentHealth -= firedmg;
+            if (currentHealth <= 0)
+            {
+                //Kill Method;
+                break;
+            }
+            yield return new WaitForSeconds(1f);
         }
     }
 
