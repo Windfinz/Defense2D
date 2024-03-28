@@ -16,11 +16,14 @@ public class PlayerHealth : MonoBehaviour
 
     private float maxHealth;
 
+    GameManager gameManager;
+
     private void Start()
     {
         currentHealth = playerMaxHealth;
         maxHealth = playerMaxHealth;
         UpdateHealthBar();
+        gameManager = GetComponent<GameManager>();
     }
 
     private void FixedUpdate()
@@ -42,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             //Kill method;
+            //gameManager.GameOver();
         }
     }
 
